@@ -12,5 +12,11 @@ $('.grid-btn span').on('click', function() {
 
 });
 
+$('.side-filter input').on('change', function() {
+    
+        console.log($(this).val());
+    
+});
+
 
 })(jQuery, window, document);

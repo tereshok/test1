@@ -65,7 +65,7 @@
                     </div>
                 <?php endif; ?> 
             </div>
-            <div class="column-xl-4">
+            <div class="column-xl-4 side-filter">
                 <div>
                     <hr>
                     <h4><?php _e('Amenities', 'Property'); ?></h4>
@@ -74,12 +74,13 @@
                             'taxonomy' => 'amenities',
                             'hide_empty' => false,
                         ] );
-                        foreach( $terms as $term ){
-                            echo "<input type='checkbox' value='{$term->term_id}'>";
-                            echo $term->name;
-                            echo '<br>';
-                        }
-                    ?> 
+                    ?>    
+                    <?php foreach( $terms as $term ) : ?>
+                        <label>
+                            <input type="checkbox" value="<?php echo $term->term_id; ?>">
+                            <?php echo $term->name; ?>
+                        </label>     
+                    <?php endforeach; ?>    
                 </div>
                 <div>
                     <hr>
@@ -89,12 +90,13 @@
                             'taxonomy' => 'extras',
                             'hide_empty' => false,
                         ] );
-                        foreach( $terms as $term ){
-                            echo "<input type='checkbox' value='{$term->term_id}'>";
-                            echo $term->name;
-                            echo '<br>';
-                        }
-                    ?> 
+                    ?>    
+                        <?php foreach( $terms as $term ) : ?>
+                            <label>
+                                <input type="checkbox" value="<?php echo $term->term_id; ?>">
+                                <?php echo $term->name; ?>
+                            </label>     
+                        <?php endforeach; ?>   
                 </div>
                 <div>
                     <hr>
@@ -104,12 +106,13 @@
                             'taxonomy' => 'accessibility',
                             'hide_empty' => false,
                         ] );
-                        foreach( $terms as $term ){
-                            echo "<input type='checkbox' value='{$term->term_id}'>";
-                            echo $term->name;
-                            echo '<br>';
-                        }
-                    ?> 
+                        ?>
+                        <?php foreach( $terms as $term ) : ?>
+                            <label>
+                                <input type="checkbox" value="<?php echo $term->term_id; ?>">
+                                <?php echo $term->name; ?>
+                            </label>     
+                        <?php endforeach; ?>   
                 </div>
                 <div>
                     <hr>
@@ -119,12 +122,13 @@
                             'taxonomy' => 'bedroom_features',
                             'hide_empty' => false,
                         ] );
-                        foreach( $terms as $term ){
-                            echo "<input type='checkbox' value='{$term->term_id}'>";
-                            echo $term->name;
-                            echo '<br>';
-                        }
-                    ?> 
+                      ?>
+                      <?php foreach( $terms as $term ) : ?>
+                        <label>
+                            <input type="checkbox" value="<?php echo $term->term_id; ?>">
+                            <?php echo $term->name; ?>
+                        </label>     
+                    <?php endforeach; ?>   
                 </div>
                 <div>
                     <hr>
@@ -134,12 +138,13 @@
                             'taxonomy' => 'property_type',
                             'hide_empty' => false,
                         ] );
-                        foreach( $terms as $term ){
-                            echo "<input type='checkbox' value='{$term->term_id}'>";
-                            echo $term->name;
-                            echo '<br>';
-                        }
-                    ?> 
+                       ?>
+                       <?php foreach( $terms as $term ) : ?>
+                        <label>
+                            <input type="checkbox" value="<?php echo $term->term_id; ?>">
+                            <?php echo $term->name; ?>
+                        </label>     
+                    <?php endforeach; ?>   
                 </div>
             </div> 
         </div>
