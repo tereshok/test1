@@ -1,0 +1,70 @@
+$columns: 12;
+$gutter: 30px;
+$gutter-column: $gutter / 2;
+$breakpoints: (
+        //'sm': 576px,
+        //'md': 768px,
+        //'lg': 992px,
+        //'xl': 1200px,
+          xs: 0,
+          sm: 576px,
+          md: 768px,
+          lg: 992px,
+          xl: 1200px,
+         // xxl: 1440px,
+);
+
+$container-max-widths: (
+        sm: 576px,
+        md: 768px,
+        lg: 964px,
+        xl: 1140px,
+       // xxl: 1800px,
+       // xxxl: 1920px,
+);
+@each $size in map-keys($breakpoints) {
+  @media (min-width: map_get($breakpoints, $size)) {
+    .container {
+      box-sizing: border-box;
+      display: flex;
+      margin-left: auto;
+      margin-right: auto;
+      flex-wrap: wrap;
+      max-width: map_get($container-max-widths, $size);
+      width: 100%;
+      padding-right: $gutter-column;
+      padding-left: $gutter-column;
+    }
+  }
+}
+
+.row {
+  display: flex;
+  flex-wrap: wrap;
+  width: 100%;
+  margin-right: -$gutter-column;
+  margin-left: -$gutter-column;
+}
+
+.column,
+[class^='column-'] {
+  position: relative;
+  width: 100%;
+  padding-right: $gutter-column;
+  padding-left: $gutter-column;
+}
+
+@each $size in map-keys($breakpoints) {
+  @media (min-width: map_get($breakpoints, $size)) {
+    @for $i from 1 through $columns {
+      .column-#{$size}-#{$i} {
+        flex: 0 0 percentage($i / $columns);
+        max-width: percentage($i / $columns);
+        position: relative;
+        width: 100%;
+        padding-right: $gutter-column;
+        padding-left: $gutter-column;
+      }
+    }
+  }
+}
