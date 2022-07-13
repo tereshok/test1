@@ -8,13 +8,17 @@ var __webpack_exports__ = {};
 jQuery(function ($) {
   $('.nav-links a').on('click', function (e) {
     e.preventDefault();
-    $paged = $(this).text();
+    paged = $(this).text();
     $.ajax({
       url: themePagination.ajaxurl,
       type: 'post',
       data: {
         action: 'pagination',
+        query_vars: themePagination.query_vars,
         paged: paged
+      },
+      beforeSend: function beforeSend(xhr) {
+        $('.post-content').empty();
       },
       success: function success(data) {
         $('.post-content').html(data);

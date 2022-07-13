@@ -3,7 +3,7 @@ jQuery(function($){
 	$('.nav-links a').on('click', function(e) {
 
 		e.preventDefault();
-		$paged = $(this).text();
+		paged = $(this).text();
 
 		$.ajax({
 			url: themePagination.ajaxurl,
@@ -12,8 +12,11 @@ jQuery(function($){
 				action: 'pagination',
 				paged: paged
 			},
+			beforeSend : function( xhr ) {
+				$('.post-content').empty();
+			},
 			success: function( data ) {
-				console.log(data);
+				$('.post-content').html(data);
 			}
 		});
 	
