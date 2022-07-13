@@ -24,8 +24,8 @@ function ajax_pagination_function() {
         <?php the_posts_pagination(
             $args = [
                 'show_all'           => false, 
-                'end_size'           => 1,     
-                'mid_size'           => 1,    
+                'end_size'           => 2,     
+                'mid_size'           => 2,    
                 'prev_next'          => false,  
                 'add_args'           => false, 
                 'add_fragment'       => '',     
@@ -42,7 +42,7 @@ function ajax_pagination_function() {
 </div>
 
 <?php
-    die();
+    wp_die();
 }
 
 add_action( 'wp_ajax_pagination', 'ajax_pagination_function' );

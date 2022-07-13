@@ -47,8 +47,8 @@
                     <?php the_posts_pagination(
                         $args = [
                             'show_all'           => false, 
-                            'end_size'           => 1,     
-                            'mid_size'           => 1,    
+                            'end_size'           => 2,     
+                            'mid_size'           => 2,    
                             'prev_next'          => false,  
                             'add_args'           => false, 
                             'add_fragment'       => '',     
