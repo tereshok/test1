@@ -24,6 +24,9 @@ mix
         config.distPath +'/js')
     .js(config.srcPath + '/js/customizer.js',
         config.distPath +'/js')
+    .js([config.srcPath + '/js/ajax/ajax-pagination.js', config.srcPath +  '/js/ajax/ajax-search.js', config.srcPath +  '/js/ajax/ajax-filter.js'],
+        config.distPath +'/js/ajax.js')
+    
 
     .sass(config.srcPath + '/sass/style.scss',
         config.distPath + '/css')

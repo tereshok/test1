@@ -1,25 +1,21 @@
 jQuery(function($){
 
-	let button = $( '.nav-links a' ),
-	    paged = button.text();
+	$('.nav-links a').on('click', function(e) {
 
-	button.click( function( event ) {
- 
+		e.preventDefault();
+		$paged = $(this).text();
+
 		$.ajax({
-			type : 'POST',
-			url : pagination.ajax_url, 
-			data : {
-				paged : paged,
-				action : '' 
+			url: themePagination.ajaxurl,
+			type: 'post',
+			data: {
+				action: 'pagination',
+				paged: paged
 			},
-			beforeSend : function( xhr ) {
-				
-			},
-			success : function( data ){
- 
+			success: function( data ) {
+				console.log(data);
 			}
- 
 		});
- 
-	} );
+	
+	});
 });

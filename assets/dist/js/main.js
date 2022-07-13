@@ -20,9 +20,7 @@
     }
   });
   $('.side-filter input').on('change', function () {
-    if ($('.side-filter input:checked')) {
-      console.log($(this).val());
-    }
+    console.log($(this).val());
   });
 })(jQuery, window, document);
 
