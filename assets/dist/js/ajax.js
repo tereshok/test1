@@ -14,7 +14,6 @@ jQuery(function ($) {
       type: 'post',
       data: {
         action: 'pagination',
-        query_vars: themePagination.query_vars,
         paged: paged
       },
       beforeSend: function beforeSend(xhr) {

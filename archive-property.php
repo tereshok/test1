@@ -30,7 +30,7 @@
                 <?php query_posts([ 'post_type'      => 'property', 
                                     'orderby'        => 'date', 
                                     'order'          => 'ASC', 
-                                    'posts_per_page' => 6, 
+                                    'posts_per_page' => 2, 
                                     'paged'          => $paged]); 
                 ?>
                 <?php if (have_posts() ) : ?>
