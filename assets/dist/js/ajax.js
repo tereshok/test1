@@ -14,14 +14,12 @@ jQuery(function ($) {
       type: 'post',
       data: {
         action: 'pagination',
-        query_vars: themePagination.query_vars,
         paged: paged
       },
-      beforeSend: function beforeSend(xhr) {
-        $('.post-content').empty();
+      beforeSend: function beforeSend(xhr) {//$('.post-test').empty();
       },
       success: function success(data) {
-        $('.post-content').html(data);
+        $('.post-test').html(data);
       }
     });
   });

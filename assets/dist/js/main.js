@@ -19,8 +19,10 @@
       $('.post-content').removeClass('post-list').addClass('post-block');
     }
   });
-  $('.side-filter input').on('change', function () {
-    console.log($(this).val());
+  $('.side-filter input').on('click', function () {
+    if ($(this).is(":checked")) {
+      console.log($(this).val());
+    }
   });
 })(jQuery, window, document);
 

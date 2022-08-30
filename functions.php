@@ -185,6 +185,7 @@ require get_template_directory() . '/inc/ajax/ajax-filter.php';
 require get_template_directory() . '/inc/ajax/ajax-pagination.php';
 require get_template_directory() . '/inc/ajax/ajax-search.php';
 
+
 add_action( 'wp_enqueue_scripts', 'ajax_filter' );
 function ajax_filter() {
     wp_enqueue_script('ajax-filter', get_template_directory_uri() . '/assets/dist/js/ajax.js');

@@ -13,10 +13,10 @@ jQuery(function($){
 				paged: paged
 			},
 			beforeSend : function( xhr ) {
-				$('.post-content').empty();
+				//$('.post-test').empty();
 			},
 			success: function( data ) {
-				$('.post-content').html(data);
+				$('.post-test').html(data);
 			}
 		});
 	

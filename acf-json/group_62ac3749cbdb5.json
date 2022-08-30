@@ -17,9 +17,9 @@
             },
             "taxonomy": "amenities",
             "field_type": "checkbox",
-            "add_term": 1,
-            "save_terms": 0,
-            "load_terms": 0,
+            "add_term": 0,
+            "save_terms": 1,
+            "load_terms": 1,
             "return_format": "object",
             "multiple": 0,
             "allow_null": 0
@@ -42,5 +42,5 @@
     "hide_on_screen": "",
     "active": true,
     "description": "Block: Property Amenities",
-    "modified": 1657011983
+    "modified": 1657813560
 }
