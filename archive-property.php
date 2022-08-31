@@ -28,98 +28,22 @@
             <div class="column-xl-8 post-content post-block">
                 <div class="post-test">
                     <?php
-                        $paged = (get_query_var('paged')) ? get_query_var('paged') : 1; 
-                        $query_post = [ 'post_type'      => 'property', 
-                                        'orderby'        => 'date', 
-                                        'order'          => 'ASC', 
-                                        'posts_per_page' => 2, 
-                                        'paged'          => $paged,                                       
-                        ]; 
+                        $paged = (get_query_var('paged')) ? get_query_var('paged') : 1;
+                        $query_post = [ 'post_type'      => 'property',
+                                        'orderby'        => 'date',
+                                        'order'          => 'ASC',
+                                        'posts_per_page' => 2,
+                                        'paged'          => $paged,
+                        ];
 
-                        if(isset($_REQUEST['filter'])) {
-                            $query = [
-                                'tax_query' => [
-                                    'relation' => 'AND',
-                                ],
-                            ];
-
-                            if(isset($_REQUEST['filter']['amenities']) && is_array($_REQUEST['filter']['amenities'])) {
-                                $termId = [];
-                                foreach ($_REQUEST['filter']['amenities'] as $value) {
-                                    array_push($termId, intval($value));    
-                                }
-    
-                                $query['tax_query'][] = [
-                                    'taxonomy' => 'amenities',
-                                    'fields' => 'term_id',
-                                    'terms' => $termId
-                                ]; 
-                            }
-    
-                            if(isset($_REQUEST['filter']['extras']) && is_array($_REQUEST['filter']['extras'])) {
-                                $termId = [];
-                                foreach ($_REQUEST['filter']['extras'] as $value) {
-                                    array_push($termId, intval($value));   
-                                }
-    
-                                $query['tax_query'][] = [
-                                    'taxonomy' => 'extras',
-                                    'fields' => 'term_id',
-                                    'terms' => $termId
-                                ]; 
-                            }
-    
-                            if(isset($_REQUEST['filter']['accessibility']) && is_array($_REQUEST['filter']['accessibility'])) {
-                                $termId = [];
-                                foreach ($_REQUEST['filter']['accessibility'] as $value) {
-                                    array_push($termId, intval($value));   
-                                }
-    
-                                $query['tax_query'][] = [
-                                    'taxonomy' => 'accessibility',
-                                    'fields' => 'term_id',
-                                    'terms' => $termId
-                                ]; 
-                            }
-    
-                            if(isset($_REQUEST['filter']['bedroom_features']) && is_array($_REQUEST['filter']['bedroom_features'])) {
-                                $termId = [];
-                                foreach ($_REQUEST['filter']['bedroom_features'] as $value) {
-                                    array_push($termId, intval($value));   
-                                }
-    
-                                $query['tax_query'][] = [
-                                    'taxonomy' => 'bedroom_features',
-                                    'fields' => 'term_id',
-                                    'terms' => $termId
-                                ]; 
-                            }
-
-                            if(isset($_REQUEST['filter']['property_type']) && is_array($_REQUEST['filter']['property_type'])) {
-                                $termId = [];
-                                foreach ($_REQUEST['filter']['property_type'] as $value) {
-                                    array_push($termId, intval($value));   
-                                }
-    
-                                $query['tax_query'][] = [
-                                    'taxonomy' => 'property_type',
-                                    'fields' => 'term_id',
-                                    'terms' => $termId
-                                ]; 
-                            }
-
-                            $query_post = array_merge($query_post, $query);
-                        }
-                        
-                       
                     ?>
-                    
+
                     <?php query_posts($query_post); ?>
                     <?php if (have_posts() ) : ?>
                         <?php while (have_posts()) : the_post(); ?>
                             <div class="post-item">
                                 <div>
-                                    
+
                                 </div>
                                 <a href="<?php the_permalink(); ?>">
                                     <h3><?php the_title(); ?></h3>
@@ -129,24 +53,24 @@
                 </div>
                     <?php the_posts_pagination(
                         $args = [
-                            'show_all'           => false, 
-                            'end_size'           => 2,     
-                            'mid_size'           => 2,    
-                            'prev_next'          => false,  
-                            'add_args'           => false, 
-                            'add_fragment'       => '',     
+                            'show_all'           => false,
+                            'end_size'           => 2,
+                            'mid_size'           => 2,
+                            'prev_next'          => false,
+                            'add_args'           => false,
+                            'add_fragment'       => '',
                             'screen_reader_text' => __( 'Posts navigation' ),
-                            'aria_label'         => __( 'Posts' ), 
-                            'class'              => 'pagination', 
+                            'aria_label'         => __( 'Posts' ),
+                            'class'              => 'pagination',
                         ]); ?>
                 <?php else : ?>
                     <div>
                         <?php _e('Post not found.', 'Property'); ?>
                     </div>
-                <?php endif; ?> 
+                <?php endif; ?>
             </div>
             <div class="column-xl-4 side-filter">
-                <form method="post">
+                <form method="post" class="form-filter" action="<?php bloginfo('url') . '/wp-admin/admin-ajax.php';?>">
                     <div>
                         <hr>
                         <h4><?php _e('Amenities', 'Property'); ?></h4>
@@ -155,13 +79,13 @@
                                 'taxonomy' => 'amenities',
                                 'hide_empty' => false,
                             ] );
-                        ?>    
+                        ?>
                         <?php foreach( $terms as $term ) : ?>
-                            <label for="<?php echo $term->name; ?>">
-                                <input type="checkbox" value="<?php echo $term->term_id; ?>" name="filter[amenities][]" id="<?php echo $term->name; ?>">
+                            <label for="<?php echo $term->term_id; ?>">
+                                <input type="checkbox" value="<?php echo $term->term_id; ?>" name="amenities" id="<?php echo $term->term_id; ?>">
                                 <?php echo $term->name; ?>
-                            </label>     
-                        <?php endforeach; ?>    
+                            </label>
+                        <?php endforeach; ?>
                     </div>
                     <div>
                         <hr>
@@ -171,13 +95,13 @@
                                 'taxonomy' => 'extras',
                                 'hide_empty' => false,
                             ] );
-                        ?>    
+                        ?>
                             <?php foreach( $terms as $term ) : ?>
-                                <label for="<?php echo $term->name; ?>">
-                                    <input type="checkbox" value="<?php echo $term->term_id; ?>" name="filter[extras][]" id="<?php echo $term->name; ?>">
+                                <label for="<?php echo $term->term_id; ?>">
+                                    <input type="checkbox" value="<?php echo $term->term_id; ?>" name="extras" id="<?php echo $term->term_id; ?>">
                                     <?php echo $term->name; ?>
-                                </label>      
-                            <?php endforeach; ?>   
+                                </label>
+                            <?php endforeach; ?>
                     </div>
                     <div>
                         <hr>
@@ -189,11 +113,11 @@
                             ] );
                             ?>
                             <?php foreach( $terms as $term ) : ?>
-                                <label for="<?php echo $term->name; ?>">
-                                    <input type="checkbox" value="<?php echo $term->term_id; ?>" name="filter[accessibility][]" id="<?php echo $term->name; ?>">
+                                <label for="<?php echo $term->term_id; ?>">
+                                    <input type="checkbox" value="<?php echo $term->term_id; ?>" name="accessibility" id="<?php echo $term->term_id; ?>">
                                     <?php echo $term->name; ?>
-                                </label>       
-                            <?php endforeach; ?>   
+                                </label>
+                            <?php endforeach; ?>
                     </div>
                     <div>
                         <hr>
@@ -205,11 +129,11 @@
                             ] );
                           ?>
                           <?php foreach( $terms as $term ) : ?>
-                            <label for="<?php echo $term->name; ?>">
-                                <input type="checkbox" value="<?php echo $term->term_id; ?>" name="filter[bedroom_features][]" id="<?php echo $term->name; ?>">
+                            <label for="<?php echo $term->term_id; ?>">
+                                <input type="checkbox" value="<?php echo $term->term_id; ?>" name="bedroom_features" id="<?php echo $term->term_id; ?>">
                                 <?php echo $term->name; ?>
-                            </label>       
-                        <?php endforeach; ?>   
+                            </label>
+                        <?php endforeach; ?>
                     </div>
                     <div>
                         <hr>
@@ -221,23 +145,17 @@
                             ] );
                            ?>
                            <?php foreach( $terms as $term ) : ?>
-                            <label for="<?php echo $term->name; ?>">
-                                <input type="checkbox" value="<?php echo $term->term_id; ?>" name="filter[property_type][]" id="<?php echo $term->name; ?>">
+                            <label for="<?php echo $term->term_id; ?>">
+                                <input type="checkbox" value="<?php echo $term->term_id; ?>" name="property_type" id="<?php echo $term->term_id; ?>">
                                 <?php echo $term->name; ?>
-                            </label>        
-                        <?php endforeach; ?>   
+                            </label>
+                        <?php endforeach; ?>
                     </div>
-
-
-                    <button type="submit">Send</button>
+                  
                 </form>
-            </div> 
+            </div>
         </div>
     </div>
 
-    <?php 
-    echo '<pre>';
-    print_r($_REQUEST);
-    echo '</pre>';
-    ?>
+
 <?php get_footer(); ?>

@@ -12,13 +12,4 @@ $('.grid-btn span').on('click', function() {
 
 });
 
-$('.side-filter input').on('click', function() {
-    if($(this).is( ":checked" )) {
-
-        console.log($(this).val());
-    } 
-  
-
-});
-
 })(jQuery, window, document);

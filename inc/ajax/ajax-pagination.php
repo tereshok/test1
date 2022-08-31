@@ -2,23 +2,23 @@
 
 function ajax_pagination_function() {
     $paged = $_POST['paged'];
-    query_posts([ 'post_type'      => 'property', 
-                                    'orderby'        => 'date', 
-                                    'order'          => 'ASC', 
-                                    'posts_per_page' => 2, 
-                                    'paged'          => $paged]); 
+        query_posts([   'post_type'      => 'property', 
+                        'orderby'        => 'date', 
+                        'order'          => 'ASC', 
+                        'posts_per_page' => 2, 
+                        'paged'          => $paged]); 
                 ?>
                 
-                    <?php while (have_posts()) : the_post(); ?>
-                        <div class="post-item">
-                            <div>
-                                
-                            </div>
-                            <a href="<?php the_permalink(); ?>">
-                                <h3><?php the_title(); ?></h3>
-                            </a>
+                <?php while (have_posts()) : the_post(); ?>
+                    <div class="post-item">
+                        <div>
+                            
                         </div>
-                    <?php endwhile; ?>
+                        <a href="<?php the_permalink(); ?>">
+                            <h3><?php the_title(); ?></h3>
+                        </a>
+                    </div>
+                <?php endwhile; ?>
    <?php
     wp_die();
 }
